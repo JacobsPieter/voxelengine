@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi1o5sn2rx42o"]
+
+[ext_resource type="Script" uid="uid://85e68fmnawr" path="res://node.gd" id="1_eat54"]
+[ext_resource type="Script" uid="uid://belh0f6rv0kt1" path="res://mesh_instance_3d.gd" id="1_kdh3y"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_noarx"]
+
+[sub_resource type="Environment" id="Environment_a202f"]
+
+[node name="Chunk" type="Node3D"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_eat54")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.774433, -0.44853908, -0.44616833, 0.6326559, 0.54905593, 0.5461539, 0, -0.70523065, 0.70897794, -8.624842, 5.734677, 9.859486)
+light_energy = 0.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_noarx")
+script = ExtResource("1_kdh3y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a202f")

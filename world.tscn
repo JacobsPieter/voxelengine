@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fdysjnljqt12"]
+
+[ext_resource type="Script" uid="uid://ch2r08o3evkhs" path="res://world.gd" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://bi1o5sn2rx42o" path="res://chunk.tscn" id="2_tlwt5"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_fj7yv")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+
+[node name="Chunk" parent="MultiMeshInstance3D" instance=ExtResource("2_tlwt5")]
+
+[node name="Chunk2" parent="MultiMeshInstance3D" instance=ExtResource("2_tlwt5")]
+chunk_pos = Vector3i(0, 0, 1)

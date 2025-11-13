@@ -1,11 +1,7 @@
 extends Node3D
 
-@export_category("Chunk Settings")
-@export var chunk_size: int = 32
-var chunk_area: int = chunk_size ** 2
-var chunk_volume: int = chunk_size ** 3
 
-
+@export var chunk_pos: Vector3i = Vector3i(0,0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,5 +9,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
