@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="voxelengine"
+run/main_scene="uid://fdysjnljqt12"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://globals.gd"
 
 [editor_plugins]
 

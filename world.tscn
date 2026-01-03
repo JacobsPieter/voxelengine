@@ -1,14 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://fdysjnljqt12"]
+[gd_scene load_steps=7 format=3 uid="uid://fdysjnljqt12"]
 
 [ext_resource type="Script" uid="uid://ch2r08o3evkhs" path="res://world.gd" id="1_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://bi1o5sn2rx42o" path="res://chunk.tscn" id="2_tlwt5"]
+[ext_resource type="Script" uid="uid://dybtgdd8osb4y" path="res://multi_mesh_instance_3d.gd" id="2_aqk2v"]
+[ext_resource type="Script" uid="uid://btgmy10fekmo5" path="res://all_chunks.gd" id="3_aqk2v"]
+[ext_resource type="Script" uid="uid://cx5ddusb7byw1" path="res://character_body_3d.gd" id="4_aqk2v"]
+
+[sub_resource type="Environment" id="Environment_tlwt5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_036b0"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_fj7yv")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_aqk2v")
 
-[node name="Chunk" parent="MultiMeshInstance3D" instance=ExtResource("2_tlwt5")]
+[node name="AllChunks" type="Node3D" parent="."]
+script = ExtResource("3_aqk2v")
 
-[node name="Chunk2" parent="MultiMeshInstance3D" instance=ExtResource("2_tlwt5")]
-chunk_pos = Vector3i(0, 0, 1)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tlwt5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.9993925, 0.034834474, 0.0010634969, -0.0031901675, -0.121827565, 0.99254614, 0.034704387, 0.99193984, 0.121864684, 0, 100, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 1.812402, 10.855204, 0)
+script = ExtResource("4_aqk2v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_036b0")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]

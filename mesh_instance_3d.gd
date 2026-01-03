@@ -65,8 +65,6 @@ func _ready() -> void:
 	var mesh_v_and_i = get_vertices(chunkdata.chunk_data)
 
 
-
-
 	for vert in mesh_v_and_i[0]:
 		verts.append(vert)
 
@@ -86,14 +84,15 @@ func _ready() -> void:
 
 
 
-
 	surface_array[Mesh.ARRAY_VERTEX] = verts
 	surface_array[Mesh.ARRAY_TEX_UV] = uvs
 	surface_array[Mesh.ARRAY_NORMAL] = normals
 	surface_array[Mesh.ARRAY_INDEX] = indices
 
+	if len(surface_array[0]) > 0:
+		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface_array)
+		create_trimesh_collision()
 
-	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface_array)
 
 
 
