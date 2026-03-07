@@ -7,7 +7,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var new_chunk = load("res://chunk.tscn")
-	var chunk_amount: Vector3i = Vector3i(8, 4, 8)
+	var chunk_amount: Vector3i = Vector3i(10, 4, 10)
 	for x in range(chunk_amount.x):
 		for y in range(chunk_amount.y):
 			for z in range(chunk_amount.z):

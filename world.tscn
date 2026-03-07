@@ -1,35 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://fdysjnljqt12"]
+[gd_scene format=3 uid="uid://fdysjnljqt12"]
 
 [ext_resource type="Script" uid="uid://ch2r08o3evkhs" path="res://world.gd" id="1_fj7yv"]
-[ext_resource type="Script" uid="uid://dybtgdd8osb4y" path="res://multi_mesh_instance_3d.gd" id="2_aqk2v"]
 [ext_resource type="Script" uid="uid://btgmy10fekmo5" path="res://all_chunks.gd" id="3_aqk2v"]
 [ext_resource type="Script" uid="uid://cx5ddusb7byw1" path="res://character_body_3d.gd" id="4_aqk2v"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aqk2v"]
+
+[sub_resource type="Sky" id="Sky_036b0"]
+sky_material = SubResource("ProceduralSkyMaterial_aqk2v")
+
 [sub_resource type="Environment" id="Environment_tlwt5"]
+background_mode = 2
+sky = SubResource("Sky_036b0")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_036b0"]
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" unique_id=1012382368]
 script = ExtResource("1_fj7yv")
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_aqk2v")
-
-[node name="AllChunks" type="Node3D" parent="."]
+[node name="AllChunks" type="Node3D" parent="." unique_id=1209414854]
 script = ExtResource("3_aqk2v")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2028796513]
 environment = SubResource("Environment_tlwt5")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.9993925, 0.034834474, 0.0010634969, -0.0031901675, -0.121827565, 0.99254614, 0.034704387, 0.99193984, 0.121864684, 0, 100, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=80937730]
+transform = Transform3D(-0.88600093, 0.35975924, -0.2925336, -0.4546388, -0.5500113, 0.7005649, 0.091137975, 0.7536982, 0.65087104, -0.035645723, 100, 0.017116547)
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_normal_bias = 0.843
+shadow_opacity = 0.38
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1253336285]
 transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 1.812402, 10.855204, 0)
 script = ExtResource("4_aqk2v")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=710315823]
+transform = Transform3D(0.54646087, 0, 0, 0, 1, 0, 0, 0, 0.546461, 0.016963482, 0, 0.016963363)
 shape = SubResource("CapsuleShape3D_036b0")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="CameraPivot" type="Node3D" parent="CharacterBody3D" unique_id=551095331]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraPivot" unique_id=1833023372]
+unique_name_in_owner = true

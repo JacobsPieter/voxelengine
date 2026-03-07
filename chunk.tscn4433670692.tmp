@@ -4,10 +4,6 @@
 [ext_resource type="Script" uid="uid://85e68fmnawr" path="res://chunk_data.gd" id="1_eat54"]
 [ext_resource type="Script" uid="uid://belh0f6rv0kt1" path="res://mesh_instance_3d.gd" id="1_kdh3y"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0kup"]
-albedo_color = Color(0.07450981, 0.6784314, 0.21176471, 1)
-metallic_specular = 0.05
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_a0kup"]
 resource_local_to_scene = true
 lightmap_size_hint = Vector2i(16, 16)
@@ -20,7 +16,5 @@ unique_name_in_owner = true
 script = ExtResource("1_eat54")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1954788001]
-material_override = SubResource("StandardMaterial3D_a0kup")
-gi_mode = 2
 mesh = SubResource("ArrayMesh_a0kup")
 script = ExtResource("1_kdh3y")
