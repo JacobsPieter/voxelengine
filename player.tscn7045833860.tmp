@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c80y3ibnmt42q"]
+
+[ext_resource type="Script" uid="uid://cx5ddusb7byw1" path="res://character_body_3d.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_036b0"]
+radius = 0.25
+
+[node name="Player" type="CharacterBody3D" unique_id=571460285]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 0, 0, 0)
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=576527630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016963482, 0, 0.016963363)
+shape = SubResource("CapsuleShape3D_036b0")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1851864969]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6479902, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1789231262]
+unique_name_in_owner = true
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraPivot" unique_id=556844180]
+unique_name_in_owner = true
+enabled = false
+collision_mask = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1664321838]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2011758647]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewportContainer/SubViewport" unique_id=2135853669]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/CenterContainer" unique_id=1873937353]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5944807, 0.59448063, 0.59448063, 0.7647059)
+theme_override_font_sizes/font_size = 50
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1

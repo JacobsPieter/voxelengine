@@ -22,3 +22,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+
+func _on_player_ray_hit(object: Node3D, pos: Vector3, operation: String) -> void:
+	var children = get_children()
+	for child in children:
+		if object.global_position == child.global_position:
+			print('here!')
+			child.call_deferred('update_chunk', pos, operation)
+			print('here first!')
+			break

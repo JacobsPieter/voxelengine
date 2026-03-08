@@ -18,13 +18,25 @@ var _gravity := -30.0
 
 @onready var _camera_pivot: Node3D = %CameraPivot
 @onready var _camera: Camera3D = %Camera3D
+@onready var _raycast: RayCast3D = %RayCast3D
 
+
+signal ray_hit(object: Node3D, position: Vector3)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	elif event.is_action_pressed("left_click"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if event.is_action_pressed("left_click"):
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			return
+		_raycast.force_raycast_update()
+		if _raycast.is_colliding():
+			var collider: Node3D = _raycast.get_collider()
+			var collision_point: Vector3 = _raycast.get_collision_point()
+			ray_hit.emit(collider, collision_point, 'delete')
+			print('raycast collided with ', collider, 'at ', collision_point)
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -58,7 +70,8 @@ func _physics_process(delta: float) -> void:
 	var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
 	if is_starting_jump:
 		velocity.y += jump_impulse
-
+	#if _raycast.is_colliding():
+		#print('aaaaaaaarhg')
 	move_and_slide()
 
 	if move_direction.length() > 0.2:

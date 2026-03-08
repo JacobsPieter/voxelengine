@@ -142,6 +142,10 @@ func get_vertices(data) -> Dictionary:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	build_chunk()
+
+func build_chunk() -> void:
+	mesh.clear_surfaces()
 	var surface_array := []
 	surface_array.resize(Mesh.ARRAY_MAX)
 
@@ -170,9 +174,6 @@ func _ready() -> void:
 			surface_array
 		)
 		create_trimesh_collision()
-
-
-
 
 
 
