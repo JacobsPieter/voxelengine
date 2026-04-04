@@ -2,6 +2,11 @@ extends MeshInstance3D
 
 
 @onready var chunkdata = %ChunkData
+@onready var collisonshape = %CollisionShape3D
+
+
+
+
 
 const FACE_NORMALS = [
 	Vector3( 0,  0, -1), # achter
@@ -146,6 +151,8 @@ func _ready() -> void:
 
 func build_chunk() -> void:
 	mesh.clear_surfaces()
+	for child in get_children():
+		child.queue_free()
 	var surface_array := []
 	surface_array.resize(Mesh.ARRAY_MAX)
 
@@ -173,7 +180,8 @@ func build_chunk() -> void:
 			Mesh.PRIMITIVE_TRIANGLES,
 			surface_array
 		)
-		create_trimesh_collision()
+		var shape = mesh.create_trimesh_shape()
+		collisonshape.shape = shape
 
 
 

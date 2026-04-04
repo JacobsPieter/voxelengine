@@ -20,6 +20,7 @@ unique_name_in_owner = true
 script = ExtResource("1_eat54")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=508047086]
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1954788001]
 unique_name_in_owner = true
@@ -29,3 +30,6 @@ gi_mode = 2
 mesh = SubResource("ArrayMesh_a0kup")
 skeleton = NodePath("../..")
 script = ExtResource("1_kdh3y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=955245725]
+unique_name_in_owner = true

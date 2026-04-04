@@ -24,11 +24,11 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _on_player_ray_hit(object: Node3D, pos: Vector3, operation: String) -> void:
+func _on_player_ray_hit(object: Node3D, pos: Vector3, normal: Vector3, operation: String) -> void:
 	var children = get_children()
 	for child in children:
 		if object.global_position == child.global_position:
 			print('here!')
-			child.call_deferred('update_chunk', pos, operation)
+			child.call_deferred('update_chunk', pos, normal, operation)
 			print('here first!')
 			break

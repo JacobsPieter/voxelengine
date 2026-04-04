@@ -9,8 +9,8 @@ extends CharacterBody3D
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.25
-@export var tilt_upper_limit := PI / 3.0
-@export var tilt_lower_limit := -PI / 3.0
+@export var tilt_upper_limit := PI / 2
+@export var tilt_lower_limit := -PI / 2
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
@@ -21,7 +21,7 @@ var _gravity := -30.0
 @onready var _raycast: RayCast3D = %RayCast3D
 
 
-signal ray_hit(object: Node3D, position: Vector3)
+signal ray_hit(object: Node3D, pos: Vector3, normal: Vector3, operation: String)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -34,8 +34,16 @@ func _input(event: InputEvent) -> void:
 		if _raycast.is_colliding():
 			var collider: Node3D = _raycast.get_collider()
 			var collision_point: Vector3 = _raycast.get_collision_point()
-			ray_hit.emit(collider, collision_point, 'delete')
+			var collision_normal: Vector3 = _raycast.get_collision_normal()
+			ray_hit.emit(collider, collision_point, collision_normal, 'delete')
 			print('raycast collided with ', collider, 'at ', collision_point)
+	if event.is_action_pressed("right_click"):
+		_raycast.force_raycast_update()
+		if _raycast.is_colliding():
+			var collider: Node3D = _raycast.get_collider()
+			var collision_point: Vector3 = _raycast.get_collision_point()
+			var collision_normal: Vector3 = _raycast.get_collision_normal()
+			ray_hit.emit(collider, collision_point, collision_normal, 'add')
 
 
 
